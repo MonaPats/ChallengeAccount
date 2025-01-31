@@ -8,10 +8,6 @@ plugins {
 springBoot {
 	mainClass = 'com.dws.challenge.ChallengeApplication'  // Replace with your actual main class
 }
-////tasks.named('bootRun') {
-//	application {
-//	mainClassName = 'com.dws.challenge.ChallengeApplication'  // Replace with your main class
-//}
 
 
 group = 'com.dws.challenge'
