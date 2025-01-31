@@ -6,8 +6,6 @@ import com.dws.challenge.repository.AccountsRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.security.auth.login.AccountNotFoundException;
 import java.math.BigDecimal;
 
 @Service
@@ -28,8 +26,6 @@ public class AccountsServiceImpl implements AccountService {
   }
 
   //***Added NEW code
-
-
   @Override
   // Transfer money between accounts
   public void transfer(String accountFromId, String accountToId, BigDecimal amount) {
@@ -41,12 +37,12 @@ public class AccountsServiceImpl implements AccountService {
     synchronized (this) {
       Account accountFrom = accountsRepository.getAccount(accountFromId);
       if (accountFrom == null) {
-        //  throw new AccountNotFoundException("Account not found: " + accountFromId);
+         throw new DuplicateAccountIdException.AccountNotFoundException("Account not found: " + accountFromId);
       }
 
       Account accountTo = accountsRepository.getAccount(accountToId);
       if (accountTo == null) {
-        // throw new AccountNotFoundException("Account not found: " + accountToId);
+        throw new DuplicateAccountIdException.AccountNotFoundException("Account not found: " + accountToId);
       }
 
       // Ensure the sender has enough balance

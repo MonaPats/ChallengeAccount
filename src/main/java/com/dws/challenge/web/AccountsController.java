@@ -46,7 +46,7 @@ public class AccountsController {
   }
 
   @GetMapping(path = "/{accountId}")
-  public Account getAccount(@PathVariable String accountId) {
+  public ResponseEntity<Object> getAccount(@PathVariable String accountId) {
 
     log.info("Retrieving account for id {}", accountId);
     //added below
@@ -54,10 +54,11 @@ public class AccountsController {
 
     if (account == null) {
       log.warn("Account not found for id {}", accountId);
-      // return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // HTTP 404 - Not Found
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // HTTP 404 - Not Found
     }
-    // return new ResponseEntity<>(account, HttpStatus.OK);  // HTTP 200 - OK
-    return this.accountsService.getAccount(accountId);
+     this.accountsService.getAccount(accountId);
+    return new ResponseEntity<>(account, HttpStatus.OK);  // HTTP 200 - OK
+
   }
   //new
 // Transfer money between two accounts

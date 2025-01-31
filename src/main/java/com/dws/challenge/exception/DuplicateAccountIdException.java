@@ -9,7 +9,7 @@ public class DuplicateAccountIdException extends RuntimeException {
 
 
   //Added new
-  public class AccountNotFoundException extends RuntimeException {
+  public static class AccountNotFoundException extends RuntimeException {
     public AccountNotFoundException(String message) {
       super(message);
     }
